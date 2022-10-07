@@ -69,10 +69,10 @@ services:
               - GET
               - POST
       customDomains:
-        - domainName: auto
+        - domainName: api.duanxu.tech
           protocol: HTTP
           routeConfigs:
-            - path: /*
+            - path: /hello-world
               methods:
                 - GET
                 - POST
