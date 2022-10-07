@@ -67,7 +67,7 @@ services:
               - POST
       customDomains:
         - domainName: api.duanxu.tech
-          protocol: HTTP
+          protocol: HTTPS
           routeConfigs:
             - path: /hello-world
               methods:
