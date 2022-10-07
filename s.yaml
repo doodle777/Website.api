@@ -16,12 +16,9 @@
 # ------------------------------------
 edition: 1.0.0
 name: hello-world-app
-# access 是当前应用所需要的密钥信息配置：
-# 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
-# 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
 access: "default"
 
-vars: # 全局变量
+vars:
   region: "cn-shanghai"
   service:
     name: "Website"
@@ -39,8 +36,8 @@ services:
       # post-deploy:
       #   - run: rm -rf target
       #     path: ./code
-    props: # 组件的属性值
-      region: ${vars.region} # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
+    props:
+      region: ${vars.region}
       service:
         name: ${vars.service.name}
         description: ${vars.service.description}
