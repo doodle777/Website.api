@@ -68,8 +68,7 @@ services:
       customDomains:
         - domainName: api.duanxu.tech
           protocol: HTTPS
-          certConfig: 
-            certId: 8571161
+          certId: 8571161
           routeConfigs:
             - path: /hello-world
               methods:
