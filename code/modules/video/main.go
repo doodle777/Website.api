@@ -8,7 +8,7 @@ import (
 func main() {
 	router := gin.Default()
 
-	video := router.Group("/")
+	video := router.Group("/video")
 	{
 		video.GET("/list", bilibili.GetVideoList)
 	}

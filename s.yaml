@@ -119,13 +119,13 @@ services:
         protocol: HTTPS
         certId: ${vars.certId}
         routeConfigs:
-          - path: /image
+          - path: /image/*
             functionName: ${vars.service.image.name}
             serviceName: ${vars.service.image.name}
             methods:
               - GET
               - POST
-          - path: /video
+          - path: /video/*
             functionName: ${vars.service.video.name}
             serviceName: ${vars.service.video.name}
             methods:

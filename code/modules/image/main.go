@@ -8,7 +8,7 @@ import (
 func main() {
 	router := gin.Default()
 
-	image := router.Group("/")
+	image := router.Group("/image")
 	{
 		image.GET("/list", bilibili.GetVideoList)
 	}
