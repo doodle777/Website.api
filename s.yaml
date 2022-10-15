@@ -20,30 +20,84 @@ access: "default"
 
 vars:
   region: "cn-shanghai"
+  certId: 8571161
   service:
-    name: "Website"
-    description: 'hello world by serverless devs'
+    image:
+        name: "ImageService"
+        description: 'Website ImageService'
+    video:
+      name: "VideoService"
+      description: 'Website VideoService'
 
 services:
-  helloworld:
+  ImageService:
     component: fc
     actions:
       pre-deploy:
         - run: go mod tidy
           path: ./code
         - run: GO111MODULE=on GOOS=linux CGO_ENABLED=0 go build -o target/main main.go
-          path: ./code
+          path: ./code/modules/image
       # post-deploy:
       #   - run: rm -rf target
       #     path: ./code
     props:
       region: ${vars.region}
       service:
-        name: ${vars.service.name}
-        description: ${vars.service.description}
+        name: ${vars.service.image.name}
+        description: ${vars.service.image.description}
       function:
-        name: ${vars.service.name}
-        description: ${vars.service.description}
+        name: ${vars.service.image.name}
+        description: ${vars.service.image.description}
+        codeUri: './code'
+        cAPort: 9000
+        customRuntimeConfig:
+          command:
+            - ./target/main
+        environmentVariables: { }
+        handler: index.handler
+        instanceConcurrency: 20
+        instanceType: e1
+        memorySize: 512
+        runtime: custom
+        timeout: 30
+        internetAccess: true
+      triggers:
+        - name: httpTrigger
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+      customDomains:
+        - domainName: api.duanxu.tech
+          protocol: HTTPS
+          certId: ${vars.certId}
+          routeConfigs:
+            - path: /image
+              methods:
+                - GET
+                - POST
+  VideoService:
+    component: fc
+    actions:
+      pre-deploy:
+        - run: go mod tidy
+          path: ./code
+        - run: GO111MODULE=on GOOS=linux CGO_ENABLED=0 go build -o target/main main.go
+          path: ./code/modules/video
+      # post-deploy:
+      #   - run: rm -rf target
+      #     path: ./code
+    props:
+      region: ${vars.region}
+      service:
+        name: ${vars.service.video.name}
+        description: ${vars.service.video.description}
+      function:
+        name: ${vars.service.video.name}
+        description: ${vars.service.video.description}
         codeUri: './code'
         cAPort: 9000
         customRuntimeConfig:
@@ -68,9 +122,9 @@ services:
       customDomains:
         - domainName: api.duanxu.tech
           protocol: HTTPS
-          certId: 8571161
+          certId: ${vars.certId}
           routeConfigs:
-            - path: /hello-world
+            - path: /video
               methods:
                 - GET
                 - POST
