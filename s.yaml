@@ -70,15 +70,6 @@ services:
             methods:
               - GET
               - POST
-      customDomains:
-        - domainName: api.duanxu.tech
-          protocol: HTTPS
-          certId: ${vars.certId}
-          routeConfigs:
-            - path: /image
-              methods:
-                - GET
-                - POST
   VideoService:
     component: fc
     actions:
@@ -119,12 +110,24 @@ services:
             methods:
               - GET
               - POST
-      customDomains:
-        - domainName: api.duanxu.tech
-          protocol: HTTPS
-          certId: ${vars.certId}
-          routeConfigs:
-            - path: /video
-              methods:
-                - GET
-                - POST
+  Domain:
+    component: fc-domain
+    props:
+      region: ${vars.region}
+      customDomain:
+        domainName: api.duanxu.tech
+        protocol: HTTPS
+        certId: ${vars.certId}
+        routeConfigs:
+          - path: /image
+            functionName: ${vars.service.image.name}
+            serviceName: ${vars.service.image.name}
+            methods:
+              - GET
+              - POST
+          - path: /video
+            functionName: ${vars.service.video.name}
+            serviceName: ${vars.service.video.name}
+            methods:
+              - GET
+              - POST
