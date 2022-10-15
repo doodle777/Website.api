@@ -1,7 +1,7 @@
 package bilibili
 
-// BilibiliVideoListRequest Bilibili视频列表查询请求体
-type BilibiliVideoListRequest struct {
+// VideoListRequest Bilibili视频列表查询请求体
+type VideoListRequest struct {
 	Mid          int
 	Ps           int
 	Tid          int
@@ -12,8 +12,8 @@ type BilibiliVideoListRequest struct {
 	Jsonp        string
 }
 
-// BilibiliVideoListResponse Bilibili视频列表查询响应体
-type BilibiliVideoListResponse struct {
+// VideoListResponse Bilibili视频列表查询响应体
+type VideoListResponse struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`
 	Ttl     int    `json:"ttl"`
@@ -21,7 +21,7 @@ type BilibiliVideoListResponse struct {
 		List struct {
 			Tlist struct {
 			} `json:"tlist"`
-			Vlist []BilibiliVideoDetail `json:"vlist"`
+			Vlist []VideoDetail `json:"vlist"`
 		} `json:"list"`
 		Page struct {
 			Pn    int `json:"pn"`
@@ -38,8 +38,8 @@ type BilibiliVideoListResponse struct {
 	} `json:"data"`
 }
 
-// BilibiliVideoDetail Bilibili视频详情
-type BilibiliVideoDetail struct {
+// VideoDetail Bilibili视频详情
+type VideoDetail struct {
 	Comment        int    `json:"comment"`
 	Typeid         int    `json:"typeid"`
 	Play           int    `json:"play"`
@@ -65,13 +65,13 @@ type BilibiliVideoDetail struct {
 	IsLivePlayback int    `json:"is_live_playback"`
 }
 
-// BilibiliVideoDetailRequest Bilibili视频详情查询请求体
-type BilibiliVideoDetailRequest struct {
+// VideoDetailRequest Bilibili视频详情查询请求体
+type VideoDetailRequest struct {
 	Aid int
 }
 
-// BilibiliVideoDetailResponse Bilibili视频详情查询响应体
-type BilibiliVideoDetailResponse struct {
+// VideoDetailResponse Bilibili视频详情查询响应体
+type VideoDetailResponse struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`
 	Ttl     int    `json:"ttl"`

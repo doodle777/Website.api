@@ -11,7 +11,8 @@ func main() {
 	video := router.Group("/video")
 	{
 		video.GET("/list", bilibili.GetVideoList)
+		video.GET("/detail", bilibili.GetVideoDetail)
 	}
 
-	router.Run(":9000")
+	_ = router.Run(":9000")
 }

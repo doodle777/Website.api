@@ -13,5 +13,5 @@ func main() {
 		image.GET("/list", bilibili.GetVideoList)
 	}
 
-	router.Run(":9000")
+	_ = router.Run(":9000")
 }
