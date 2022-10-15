@@ -53,7 +53,7 @@ services:
         cAPort: 9000
         customRuntimeConfig:
           command:
-            - ./target/main
+            - ./modules/image/target/main
         environmentVariables: { }
         handler: index.handler
         instanceConcurrency: 20
@@ -93,7 +93,7 @@ services:
         cAPort: 9000
         customRuntimeConfig:
           command:
-            - ./target/main
+            - ./modules/video/target/main
         environmentVariables: {}
         handler: index.handler
         instanceConcurrency: 20
